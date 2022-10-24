@@ -1,6 +1,7 @@
 # coding: utf-8
 from bs4 import BeautifulSoup
 import requests
+import json
 import time
 
 
@@ -73,7 +74,7 @@ def main(index, origin):
             news_list = '163'
     return {
         'suc': suc,
-        'time': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+        'time': time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()),
         'data': {
             'title': data[0],
             'date': data[1],
@@ -82,3 +83,4 @@ def main(index, origin):
         },
         'all_data': data
     }
+

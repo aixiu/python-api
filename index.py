@@ -2,6 +2,7 @@
 import uvicorn
 from fastapi import FastAPI, Response
 from api.crawler import main as new
+import json
 
 app = FastAPI()
 
@@ -12,8 +13,19 @@ def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str =
     response.headers["Access-Control-Allow-Origin"] = "*"
     if origin == "undefined":
         origin = "zhihu"
-    return new(index, origin)
+    # return new(index, origin)
+    data = new(index, origin)
+        
+    return(data)
+    
 
 
 if __name__ == "__main__":
-    uvicorn.run("index:app", host="127.0.0.1", port=62, log_level="info")
+    uvicorn.run("index:app", host="127.0.0.1", port=62, log_level="info", reload=True)
+
+
+
+# index = int(input('输入页数：'))
+# origin = input('可输入 zhihu 或空：')
+# data = new(index=index, origin=origin)
+# print(data)
