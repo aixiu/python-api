@@ -1,4 +1,8 @@
-# coding:utf-8
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author: Aixiu
+# @Time  : 2022/10/25 11:46:50
+
 import uvicorn
 from fastapi import FastAPI, Response
 from api.crawler import main as new
@@ -13,11 +17,7 @@ def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str =
     response.headers["Access-Control-Allow-Origin"] = "*"
     if origin == "undefined":
         origin = "zhihu"
-    # return new(index, origin)
-    data = new(index, origin)
-        
-    return(data)
-    
+    return new(index, origin)
 
 
 if __name__ == "__main__":
