@@ -19,7 +19,7 @@ def get_zhihu_days(index):
     html = data['data'][0]['content']
     soup = BeautifulSoup(html, 'lxml')
     day_news = soup.find_all('p')
-    print(day_news)
+    # print(day_news)
     final_list = []
     news_list = []
     for i in day_news:
@@ -103,6 +103,7 @@ if __name__ == '__main__':
     # print(data['all_data'])
     
     # print(data)
+    
     # print(data['data']['title'])
     # print()
     # print(data['data']['date'])
