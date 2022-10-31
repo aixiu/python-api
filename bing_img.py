@@ -25,8 +25,46 @@ headers = {
 respons = requests.get(url=url, headers=headers).json()
 img_data_dic = {}
 img_data = json.dumps(respons, indent=3, ensure_ascii=False)
-print(type(img_data))
-print(img_data['LastUpdate'])
+# print(img_data)
+# print(type(img_data))
+data_list = respons['data']
+
+# print(data_list)
+# img_url_list = []
+
+# for img_url in data_list:
+#     img_url_list.append(f"https://cn.bing.com{img_url['url']}")
+    
+for data in data_list:
+    startdate =  data['startdate']
+    fullstartdate =  data['fullstartdate']
+    enddate =  data['enddate']
+    url =  (f"https://cn.bing.com{data['url']}")
+    copyright_s =  data['copyright']
+    title =  data['title']
+    hsh =  data['hsh']
+
+
+    
+# print(img_url_list)
+
+data_info = {
+    'LastUpdate': respons['LastUpdate'],
+    'status': respons['status'],
+    'data': [
+        {
+             'startdate': startdate,
+             'fullstartdate': fullstartdate,
+             'enddate': enddate,
+             'url': url,
+             'copyright': copyright_s,
+             'title': title,
+             'hsh': hsh,
+        }
+    ]
+}
+    
+print(data_info)
 
 # aa = {
 #     "LastUpdate": img_data['LastUpdate'],
@@ -49,3 +87,16 @@ print(img_data['LastUpdate'])
 #     }],
 # }
 # print(aa)
+# https://cn.bing.com/th?id=OHR.SealRiver_ZH-CN6334858649_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp
+# https://cn.bing.com/th?id=OHR.WychwoodForest_ZH-CN6560180288_UHD.jpg
+# https://cn.bing.com//th?id=OHR.SealRiver_ZH-CN6334858649
+
+"""
+https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN
+
+参数	      含义
+format	     返回数据形式 js - json xml - xml
+idx	         截止天数 0-今天 -1 - 截止至明天 1 截止至昨天
+n	         返回数量
+mkt	         地区 zh-CN - 国区
+"""
